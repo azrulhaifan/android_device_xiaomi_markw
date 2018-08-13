@@ -25,9 +25,9 @@ LOCAL_C_INCLUDES := $(MM_JPEG_TEST_PATH)
 LOCAL_C_INCLUDES += $(MM_JPEG_TEST_PATH)/../inc
 LOCAL_C_INCLUDES += $(MM_JPEG_TEST_PATH)/../../common
 LOCAL_C_INCLUDES += $(MM_JPEG_TEST_PATH)/../../mm-camera-interface/inc
-LOCAL_C_INCLUDES += $(OMX_HEADER_DIR)
-LOCAL_C_INCLUDES += $(OMX_CORE_DIR)/qexif
-LOCAL_C_INCLUDES += $(OMX_CORE_DIR)/qomx_core
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../.. \
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../mm-image-codec/qexif \
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../mm-image-codec/qomx_core
 
 LOCAL_C_INCLUDES+= $(kernel_includes)
 LOCAL_ADDITIONAL_DEPENDENCIES := $(common_deps)
