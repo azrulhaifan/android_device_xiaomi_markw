@@ -10,7 +10,7 @@ LOCAL_C_INCLUDES += \
 		 hardware/libhardware/include \
 		 system/media/audio_route/include \
 		 device/xiaomi/markw/power \
-LOCAL_ADDITIONAL_DEPENDENCIES += INSTALLED_KERNEL_HEADERS
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 LOCAL_SHARED_LIBRARIES := liblog \
  libutils \
  libcutils \
