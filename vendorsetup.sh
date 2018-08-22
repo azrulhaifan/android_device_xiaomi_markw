@@ -1,1 +1,1 @@
-add_lunch_combo nitrogen_markw-eng
+add_lunch_combo potato_markw-eng
