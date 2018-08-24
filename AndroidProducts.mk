@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/potato_markw.mk
+    $(LOCAL_DIR)/carbon_markw.mk

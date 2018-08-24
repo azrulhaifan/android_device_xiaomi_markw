@@ -16,13 +16,16 @@
 
 $(call inherit-product, device/xiaomi/markw/full_markw.mk)
 
-# Inherit some common Potato stuff.
-$(call inherit-product, vendor/potato/config/common_full_phone.mk)
+# Inherit Carbon product configuration
+$(call inherit-product, vendor/carbon/config/common.mk)
 
-PRODUCT_NAME := potato_markw
+PRODUCT_NAME := carbon_markw
 BOARD_VENDOR := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.carbon.maintainer="Azrul Haifan"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=markw \
