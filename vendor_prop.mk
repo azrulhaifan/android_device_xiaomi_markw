@@ -138,18 +138,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.data.netmgrd.qos.enable=true \
 	ro.use_data_netmgrd=true
 
-# NITZ
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.rild.nitz_plmn= \
-	persist.rild.nitz_long_ons_0= \
-	persist.rild.nitz_long_ons_1= \
-	persist.rild.nitz_long_ons_2= \
-	persist.rild.nitz_long_ons_3= \
-	persist.rild.nitz_short_ons_0= \
-	persist.rild.nitz_short_ons_1= \
-	persist.rild.nitz_short_ons_2= \
-	persist.rild.nitz_short_ons_3=
-
 # Qualcomm
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qualcomm.cabl=0
@@ -231,7 +219,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config.extra=none
+	persist.sys.usb.config.extra=none \
+	persist.service.adb.enable=1  \
+	persist.service.debuggable=1  \
+	persist.sys.usb.config=mtp,adb
 
 # WIFI
 PRODUCT_PROPERTY_OVERRIDES += \
