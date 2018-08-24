@@ -231,8 +231,5 @@ WIFI_HIDL_FEATURE_AWARE := true
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
-# Properties
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
-
 # Inherit from the proprietary version
 -include vendor/xiaomi/markw/BoardConfigVendor.mk
