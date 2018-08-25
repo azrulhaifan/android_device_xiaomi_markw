@@ -17,6 +17,7 @@
 #define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.0-service.custom"
 
 #include <hardware/hw_auth_token.h>
+
 #include <hardware/hardware.h>
 #include <hardware/fingerprint.h>
 #include "BiometricsFingerprint.h"
@@ -41,12 +42,7 @@ BiometricsFingerprint *BiometricsFingerprint::sInstance = nullptr;
 
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
     sInstance = this; // keep track of the most recent instance
-    if (is_goodix) {
-        mDevice = getWrapperService(BiometricsFingerprint::notify);
-    } else {
-        mDevice = openHal();
-    }
-
+    mDevice = openHal();
     if (!mDevice) {
         ALOGE("Can't open HAL module");
     }
@@ -149,7 +145,6 @@ FingerprintAcquiredInfo BiometricsFingerprint::VendorAcquiredFilter(
 
 Return<uint64_t> BiometricsFingerprint::setNotify(
         const sp<IBiometricsFingerprintClientCallback>& clientCallback) {
-    std::lock_guard<std::mutex> lock(mClientCallbackMutex);
     mClientCallback = clientCallback;
     // This is here because HAL 2.1 doesn't have a way to propagate a
     // unique token for its driver. Subsequent versions should send a unique
@@ -178,16 +173,7 @@ Return<uint64_t> BiometricsFingerprint::getAuthenticatorId() {
 }
 
 Return<RequestStatus> BiometricsFingerprint::cancel() {
-    /* notify client on cancel hack */
-    int ret = mDevice->cancel(mDevice);
-    ALOG(LOG_VERBOSE, LOG_TAG, "cancel() %d\n", ret);
-    if (ret == 0) {
-        fingerprint_msg_t msg;
-        msg.type = FINGERPRINT_ERROR;
-        msg.data.error = FINGERPRINT_ERROR_CANCELED;
-        sInstance->notify(&msg);
-    }
-    return ErrorFilter(ret);
+    return ErrorFilter(mDevice->cancel(mDevice));
 }
 
 #define MAX_FINGERPRINTS 100
@@ -229,11 +215,9 @@ Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
     if (access(storePath.c_str(), W_OK)) {
         return RequestStatus::SYS_EINVAL;
     }
-    int ret = mDevice->set_active_group(mDevice, gid, storePath.c_str());
-    /* set active group hack for goodix */
-    if ((ret > 0) && is_goodix)
-        ret = 0;
-    return ErrorFilter(ret);
+
+    return ErrorFilter(mDevice->set_active_group(mDevice, gid,
+                                                    storePath.c_str()));
 }
 
 Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId,
@@ -276,12 +260,6 @@ fingerprint_device_t* BiometricsFingerprint::openHal() {
         return nullptr;
     }
 
-    if (kVersion != device->version) {
-        // enforce version on new devices because of HIDL@2.1 translation layer
-        ALOGE("Wrong fp version. Expected %d, got %d", kVersion, device->version);
-        //return nullptr;
-    }
-
     fingerprint_device_t* fp_device =
         reinterpret_cast<fingerprint_device_t*>(device);
 
@@ -297,7 +275,6 @@ fingerprint_device_t* BiometricsFingerprint::openHal() {
 void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
     BiometricsFingerprint* thisPtr = static_cast<BiometricsFingerprint*>(
             BiometricsFingerprint::getInstance());
-    std::lock_guard<std::mutex> lock(thisPtr->mClientCallbackMutex);
     if (thisPtr == nullptr || thisPtr->mClientCallback == nullptr) {
         ALOGE("Receiving callbacks before the client callback is registered.");
         return;
