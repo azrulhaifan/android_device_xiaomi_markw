@@ -17,7 +17,7 @@
 $(call inherit-product, device/xiaomi/markw/full_markw.mk)
 
 # Inherit some common Havoc stuff.
-$(call inherit-product, vendor/havoc/config/common_full_phone.mk)
+$(call inherit-product, vendor/havoc/products/common.mk)
 
 PRODUCT_NAME := havoc_markw
 BOARD_VENDOR := Xiaomi
