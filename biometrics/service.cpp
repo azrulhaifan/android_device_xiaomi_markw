@@ -16,21 +16,12 @@
 
 #define LOG_TAG "android.biometrics.fingerprint@2.0-service.xiaomi_markw"
 
-#include <binder/IPCThreadState.h>
-#include <binder/IServiceManager.h>
-#include <binder/PermissionCache.h>
-#include <utils/String16.h>
-#include <keystore/keystore.h> // for error codes
-
 #include <android/log.h>
 #include <hidl/HidlSupport.h>
 #include <hidl/HidlTransportSupport.h>
 #include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
 #include <android/hardware/biometrics/fingerprint/2.1/types.h>
-
 #include "BiometricsFingerprint.h"
-#include "fingerprintd/FingerprintDaemonProxy.h"
-#include <cutils/properties.h>
 
 using android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint;
 using android::hardware::biometrics::fingerprint::V2_1::implementation::BiometricsFingerprint;
@@ -38,54 +29,18 @@ using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 using android::sp;
 
-bool is_goodix = false;
-
 int main() {
-    char vend[PROPERTY_VALUE_MAX];
-    property_get("ro.hardware.fingerprint", vend, "none");
-    
-    if (!strcmp(vend, "none")) {
-    	ALOGE("ro.hardware.fingerprint not set! Killing " LOG_TAG " binder service!");
-        return 1;
-    }
-
-    if (!strcmp(vend, "goodix")) {
-        is_goodix = true;
-        ALOGI("Start fingerprintd");
-        android::sp<android::IServiceManager> serviceManager = android::defaultServiceManager();
-        android::sp<android::FingerprintDaemonProxy> proxy =
-                android::FingerprintDaemonProxy::getInstance();
-        android::status_t ret = serviceManager->addService(
-                android::FingerprintDaemonProxy::descriptor, proxy);
-        if (ret != android::OK) {
-            ALOGE("Couldn't register fingerprintd binder service!");
-        }
-    }
-
-    ALOGI("Start biometrics");
     android::sp<IBiometricsFingerprint> bio = BiometricsFingerprint::getInstance();
 
-    /* process Binder transaction as a single-threaded program. */
-    if (is_goodix) {
-        configureRpcThreadpool(1, false /* callerWillJoin */);
-    } else {
-        configureRpcThreadpool(1, true /* callerWillJoin */);
-    }
+    configureRpcThreadpool(1, true /*callerWillJoin*/);
 
     if (bio != nullptr) {
-        android::status_t ret = bio->registerAsService();
-        if (ret != android::OK) {
-            ALOGE("Cannot register BiometricsFingerprint service: %d", ret);
-        }
+        bio->registerAsService();
     } else {
         ALOGE("Can't create instance of BiometricsFingerprint, nullptr");
     }
 
-    if (is_goodix) {
-        android::IPCThreadState::self()->joinThreadPool();   // run binder service fingerprintd part
-    } else {
-        joinRpcThreadpool();
-    }
+    joinRpcThreadpool();
 
     return 0; // should never get here
 }
