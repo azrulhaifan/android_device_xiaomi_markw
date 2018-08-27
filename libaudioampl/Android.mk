@@ -1,10 +1,10 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_C_INCLUDES += \
-     $(call project-path-for,qcom-audio)/hal/msm8916/ \
-		 $(call project-path-for,qcom-audio)/hal/ \
-		 $(call project-path-for,qcom-audio)/hal/audio_extn \
-     $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
+    hardware/qcom/audio-caf/msm8916/hal/msm8916/ \
+	hardware/qcom/audio-caf/msm8916/hal/ \
+	hardware/qcom/audio-caf/msm8916/hal/audio_extn \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 		 external/tinyalsa/include \
 		 external/tinycompress/include \
 		 hardware/libhardware/include \
