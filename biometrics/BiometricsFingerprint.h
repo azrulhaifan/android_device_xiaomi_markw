@@ -25,9 +25,6 @@
 #include <hidl/Status.h>
 #include <android/hardware/biometrics/fingerprint/2.1/IBiometricsFingerprint.h>
 
-extern bool is_goodix;
-fingerprint_device_t* getWrapperService(fingerprint_notify_t notify);
-
 namespace android {
 namespace hardware {
 namespace biometrics {
