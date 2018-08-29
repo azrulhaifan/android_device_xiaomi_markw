@@ -39,7 +39,7 @@
 #include "OMX_QCOMExtns.h"
 
 // Display dependencies
-#include <qdMetaData.h>
+#include "qdMetaData.h"
 
 // Camera dependencies
 #include "camera.h"

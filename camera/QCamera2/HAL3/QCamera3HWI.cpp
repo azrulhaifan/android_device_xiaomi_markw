@@ -47,7 +47,7 @@
 #include <map>
 
 // Display dependencies
-#include <qdMetaData.h>
+#include "qdMetaData.h"
 
 // Camera dependencies
 #include "android/QCamera3External.h"
