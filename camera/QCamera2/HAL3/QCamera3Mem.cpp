@@ -33,7 +33,7 @@
 #include <fcntl.h>
 #define MMAN_H <SYSTEM_HEADER_PREFIX/mman.h>
 #include MMAN_H
-#include "gralloc_priv.h"
+#include <gralloc_priv.h>
 
 // Display dependencies
 #include "qdMetaData.h"

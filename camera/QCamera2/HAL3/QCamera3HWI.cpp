@@ -43,7 +43,7 @@
 #include "utils/Timers.h"
 #include "sys/ioctl.h"
 #include <sync/sync.h>
-#include "gralloc_priv.h"
+#include <gralloc_priv.h>
 #include <map>
 
 // Display dependencies

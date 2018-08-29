@@ -30,7 +30,7 @@
 #define LOG_TAG "QCamera3StreamMem"
 
 // System dependencies
-#include "gralloc_priv.h"
+#include <gralloc_priv.h>
 
 // Camera dependencies
 #include "QCamera3StreamMem.h"
