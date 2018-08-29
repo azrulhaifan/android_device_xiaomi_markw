@@ -36,7 +36,7 @@
 #include <gralloc_priv.h>
 
 // Display dependencies
-#include "qdMetaData.h"
+#include <qdMetaData.h>
 
 // Camera dependencies
 #include "QCamera3HWI.h"
