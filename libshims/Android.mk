@@ -37,9 +37,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
-    bionic/pthread_mutex.cpp
-LOCAL_C_INCLUDES := \
-    $(TOP)/bionic/libc
+    bionic/pthread_mutex_destroy.cpp
 LOCAL_SHARED_LIBRARIES := libc
 LOCAL_MODULE := libshim_mutexdestroy
 LOCAL_VENDOR_MODULE := true
