@@ -202,3 +202,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.service.adb.enable=1 \
     persist.sys.usb.config=adb \
     ro.logd.size.stats=16M
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2018-09-01
