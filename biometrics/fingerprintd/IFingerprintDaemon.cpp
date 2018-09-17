@@ -23,6 +23,8 @@
 #include <binder/PermissionCache.h>
 #include <utils/String16.h>
 #include <utils/Looper.h>
+#include <android/security/IKeystoreService.h>
+#include <keystore/keystore.h> // for error code
 #include <hardware/hardware.h>
 #include <hardware/fingerprint.h>
 #include <hardware/hw_auth_token.h>
@@ -327,6 +329,6 @@ class BpFingerprintDaemon : public BpInterface<IFingerprintDaemon> {
         }
 };
 
-IMPLEMENT_META_INTERFACE(FingerprintDaemon, "android.hardware.fingerprint.IFingerprintCustomDaemon");
+IMPLEMENT_META_INTERFACE(FingerprintDaemon, "android.hardware.fingerprint.IFingerprintDaemon");
 
 }; // namespace android
