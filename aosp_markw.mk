@@ -24,6 +24,10 @@ $(call inherit-product, device/xiaomi/markw/device.mk)
 # Inherit some common PE stuff
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
+# PixelExperience stuff.
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_GAPPS_ARCH := arm64
+
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi 4 Prime
