@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_markw.mk
+    $(LOCAL_DIR)/bootleg_markw.mk

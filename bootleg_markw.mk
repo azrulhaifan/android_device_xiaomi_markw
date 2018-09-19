@@ -16,10 +16,10 @@
 
 $(call inherit-product, device/xiaomi/markw/full_markw.mk)
 
-# Inherit some common aosp stuff.
-$(call inherit-product, vendor/aosp/common.mk)
+# Inherit some common BootLeggers stuff.
+$(call inherit-product, vendor/bootleggers/config/common_full_phone.mk)
 
-PRODUCT_NAME := aosp_markw
+PRODUCT_NAME := bootleg_markw
 BOARD_VENDOR := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
