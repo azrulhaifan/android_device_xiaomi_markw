@@ -399,3 +399,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuild/lib64/liblowi_wifihal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/liblowi_wifihal.so \
     $(LOCAL_PATH)/prebuild/lib64/libwifi-hal.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libwifi-hal.so \
     $(LOCAL_PATH)/prebuild/lib64/libxtwifi_ulp_adaptor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libxtwifi_ulp_adaptor.so \
+
+# Prebuild stuff
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuild/Generic.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/Generic.kl
