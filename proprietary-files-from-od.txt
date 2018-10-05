@@ -43,7 +43,8 @@ vendor/lib/libqomx_jpegenc.so|5a3493002dbcd8c92988d40e772691215ea6aaa5
 
 # Camera ISP - from marmite 6.0
 vendor/lib/libmmcamera2_iface_modules.so|7c56c6539b07fae82ae95e4d5ada5a1ebbc70d9b
-vendor/lib/libmmcamera2_isp_modules.so|c31ddfb11e0ba55fec3e116e87bfe167731e5138
+#(hex edit libmmcamera2_isp_modules.so):
+vendor/lib/libmmcamera2_isp_modules.so|2d1f74aa8b3466966015d8155d2d836b16e98acc
 vendor/lib/libmmcamera_isp_abf40.so|15701c65cdfd37a79b1f71199941dd42be1e9683
 vendor/lib/libmmcamera_isp_bcc40.so|23756f5e7597269ec5412ae0994ce52468ce7851
 vendor/lib/libmmcamera_isp_be_stats44.so|03b79422dc9eb13374d44f10c6d1facf6c65b561
