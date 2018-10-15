@@ -553,33 +553,33 @@ on property:init.svc.surfaceflinger=restarting
     stop hwcomposer-2-1
     start hwcomposer-2-1
 
-service time_daemon /vendor/bin/time_daemon
+service vendor.time_daemon /vendor/bin/time_daemon
     class main
     user root
     group root
 
-service gx_fpd /vendor/bin/gx_fpd
+service vendor.gx_fpd /vendor/bin/gx_fpd
     class core
     user system
     group system drmrpc
 
 # fpc fingerprint section - start
 on property:persist.sys.fp.vendor=switchf
-    stop gx_fpd
+    stop vendor.gx_fpd
     setprop persist.sys.fp.vendor searchf
     setprop persist.sys.fp.goodix 0
     setprop ro.boot.fpsensor fpc
     setprop ro.hardware.fingerprint fpc
-    start fps_hal
+    start vendor.fps_hal
 
 # goodix fingerprint section - start
 on property:persist.sys.fp.vendor=goodix
     setprop persist.sys.fp.goodix 1
     setprop ro.boot.fpsensor gdx
     setprop ro.hardware.fingerprint goodix 
-    start fps_hal
+    vendor.start fps_hal
 
-service goodix_script /vendor/bin/init.goodix.sh
+service vendor.goodix_script /vendor/bin/init.goodix.sh
     class late_start
     user root
     oneshot
