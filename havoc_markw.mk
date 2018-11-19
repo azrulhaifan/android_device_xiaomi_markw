@@ -24,6 +24,9 @@ $(call inherit-product, device/xiaomi/markw/device.mk)
 # Inherit some common Havoc stuff.
 $(call inherit-product, vendor/havoc/config/common.mk)
 
+# Official HavocOS
+HAVOC_BUILD_TYPE := Official
+
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi 4 Prime
