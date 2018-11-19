@@ -22,7 +22,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, device/xiaomi/markw/device.mk)
 
 # Inherit some common Havoc stuff.
-$(call inherit-product, vendor/havoc/products/common.mk)
+$(call inherit-product, vendor/havoc/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := Xiaomi
